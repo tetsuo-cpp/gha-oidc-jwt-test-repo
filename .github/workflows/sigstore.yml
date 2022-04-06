@@ -20,6 +20,6 @@ jobs:
         run: |
           echo foo
           echo "$ACTIONS_ID_TOKEN_REQUEST_URL"
-          OIDC_JWT=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sigstore | jq .value")
+          OIDC_JWT=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sigstore")
           echo $OIDC_JWT
-          echo $OIDC_JWT | base64
+          echo $OIDC_JWT | jq .value | base64
